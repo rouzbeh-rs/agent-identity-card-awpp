@@ -13,11 +13,11 @@ The extension acts as a **client-side verifier and renderer**. It does NOT scrap
 │  Browser Extension (Client-Side)        │
 │                                         │
 │  ┌─────────────┐   ┌────────────────┐   │
-│  │ URL Matcher │─>│ Mock Registry   │   │
-│  │ (content.js)│  │ (data/*.json)   │   │
+│  │ URL Matcher │──>│ Mock Registry  │   │
+│  │ (content.js)│   │ (data/*.json)  │   │
 │  └──────┬──────┘   └───────┬────────┘   │
-│         │                   │           │
-│         v                   v           │
+│         │                  │            │
+│         v                  v            │
 │  ┌─────────────────────────────────┐    │
 │  │  Identity Card Renderer         │    │
 │  │  (HTML/CSS DOM Injection)       │    │
