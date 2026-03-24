@@ -1,0 +1,37 @@
+{
+  "manifest_version": 3,
+  "name": "Agent Identity Card - AWPP Proof of Concept",
+  "version": "1.0.0",
+  "description": "A proof-of-concept browser extension implementing the Agent White Paper Protocol. Displays Agent Identity Cards for known AI agents based on pre-authored JSON data models.",
+  "permissions": [],
+  "content_scripts": [
+    {
+      "matches": [
+        "https://www.perplexity.ai/*",
+        "https://perplexity.ai/*",
+        "https://claude.ai/*",
+        "https://chat.openai.com/*",
+        "https://chatgpt.com/*"
+      ],
+      "js": ["content.js"],
+      "css": ["card.css"],
+      "run_at": "document_idle"
+    }
+  ],
+  "icons": {
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["data/*.json"],
+      "matches": [
+        "https://www.perplexity.ai/*",
+        "https://perplexity.ai/*",
+        "https://claude.ai/*",
+        "https://chat.openai.com/*",
+        "https://chatgpt.com/*"
+      ]
+    }
+  ]
+}

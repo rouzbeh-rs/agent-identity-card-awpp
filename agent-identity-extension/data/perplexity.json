@@ -1,0 +1,94 @@
+{
+  "$schema": "https://agentprotocol.example/schema/awpp-v1.json",
+  "identity": {
+    "name": "Perplexity AI",
+    "version": "2026",
+    "legalOperator": "Perplexity AI, Inc.",
+    "license": "Proprietary / Commercial",
+    "did": "did:web:perplexity.ai",
+    "lastUpdated": "2026-03-17"
+  },
+  "purpose": {
+    "task": "To provide real-time, source-cited answers to natural language queries by combining web search retrieval with large language model synthesis.",
+    "intendedUse": "Research assistant, fact-checking, real-time information retrieval, and source-backed question answering for general consumers and professionals.",
+    "outOfScopeUse": "Providing medical, financial, or legal advice. Use as a sole primary source for critical or life-safety decisions. Commercial use without enterprise license."
+  },
+  "architecture": {
+    "baseModel": "Multi-model routing system. Users can select from multiple underlying LLMs depending on subscription tier. The platform dynamically routes queries based on task complexity and intent. Proprietary Sonar model family handles primary retrieval.",
+    "planningModule": "Intent-aware query routing classifier that determines model selection based on query complexity, type, and user subscription tier.",
+    "memorySystem": "Short-term: Conversational context within a single thread. Long-term: Not disclosed.",
+    "knowledgeSystem": {
+      "type": "Retrieval-Augmented Generation (RAG) with proprietary real-time web index",
+      "source": "Live web index with multi-stage retrieval pipeline using lexical scorers, embedding-based ranking, and cross-encoder rerankers."
+    }
+  },
+  "capabilities": {
+    "tools": [
+      {
+        "id": "webSearch",
+        "description": "Real-time web search with inline citation generation."
+      },
+      {
+        "id": "academicSearch",
+        "description": "Searches academic papers and scholarly sources."
+      },
+      {
+        "id": "imageGeneration",
+        "description": "Image generation via integrated models (Pro+)."
+      },
+      {
+        "id": "fileAnalysis",
+        "description": "Document analysis including PDFs and text files (Pro+)."
+      },
+      {
+        "id": "computerUse",
+        "description": "Cloud-based agentic system for autonomous workflows (Max tier)."
+      }
+    ],
+    "apiAccess": [
+      {
+        "protocol": "Perplexity Sonar API",
+        "description": "Developer API for search and model capabilities."
+      }
+    ]
+  },
+  "communication": {
+    "inputModalities": [
+      "text",
+      "image",
+      "file upload"
+    ],
+    "outputModalities": [
+      "text",
+      "markdown",
+      "image",
+      "citations with source URLs"
+    ],
+    "a2aProtocol": "Not disclosed"
+  },
+  "evaluation": {
+    "benchmarks": [
+      {
+        "name": "System-level benchmarks",
+        "score": "Not disclosed",
+        "notes": "No standardized benchmarks published for the composite system."
+      }
+    ],
+    "limitations": [
+      "May surface outdated or inaccurate information from web sources despite real-time indexing.",
+      "Citation quality depends on the availability and reliability of indexed web sources.",
+      "Multi-model routing decisions are opaque to the user.",
+      "Hallucination risk exists despite RAG grounding.",
+      "Free tier uses less capable model configurations than Pro or Max tiers."
+    ]
+  },
+  "_auditMetadata": {
+    "auditor": "[Your Name]",
+    "auditDate": "2026-03-17",
+    "fieldsNotDisclosed": [
+      "architecture.memorySystem (long-term)",
+      "communication.a2aProtocol",
+      "evaluation.benchmarks (system-level)"
+    ]
+  }
+}

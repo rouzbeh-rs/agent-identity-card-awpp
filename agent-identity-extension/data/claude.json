@@ -1,0 +1,67 @@
+{
+  "$schema": "https://agentprotocol.example/schema/awpp-v1.json",
+  "identity": {
+    "name": "Claude",
+    "version": "Claude 4 Family (2025-2026)",
+    "legalOperator": "Anthropic, PBC",
+    "license": "Proprietary / Commercial API and Consumer Product",
+    "did": "did:web:anthropic.com:claude",
+    "lastUpdated": "2026-03-17"
+  },
+  "purpose": {
+    "task": "General-purpose AI assistant for conversation, analysis, coding, writing, and agentic task completion. Designed to be helpful, harmless, and honest.",
+    "intendedUse": "Research, professional productivity, software development, document analysis, creative writing, and enterprise workflows. Available via consumer chat interface (claude.ai) and developer API.",
+    "outOfScopeUse": "Providing definitive medical, financial, or legal advice. Autonomous operation in safety-critical systems without human oversight. Generation of content that violates Anthropic's Acceptable Use Policy, including CBRN weapons information, CSAM, or targeted harassment."
+  },
+  "architecture": {
+    "baseModel": "Proprietary large language model family developed by Anthropic. Current models include Opus 4.6, Sonnet 4.6, and Haiku 4.5. Trained using RLHF and Constitutional AI (CAI) methods. Parameter counts not disclosed.",
+    "planningModule": "Extended Thinking mode enables multi-step reasoning with visible chain-of-thought. Agentic loop capability for software engineering and complex task completion. Supports tool-use planning and self-correction.",
+    "memorySystem": "Short-term: Conversational context window of 200K tokens (expandable to 1M tokens via beta header). Long-term: Optional memory feature available in claude.ai for persisting information across conversations.",
+    "knowledgeSystem": {
+      "type": "Parametric knowledge from training data, augmented by web search and tool use when enabled.",
+      "source": "Training data includes publicly available web content, books, and other text sources. Web search tool available for real-time information when enabled."
+    }
+  },
+  "capabilities": {
+    "tools": [
+      { "id": "codeExecution", "description": "Can write, execute, and debug code across multiple programming languages in a sandboxed environment." },
+      { "id": "computerUse", "description": "Can interpret screenshots and generate tool calls to interact with graphical user interfaces." },
+      { "id": "fileAnalysis", "description": "Can read and analyze uploaded documents including PDFs, images, spreadsheets, and code files." },
+      { "id": "webSearch", "description": "Can search the web for real-time information when the tool is enabled." },
+      { "id": "toolUse", "description": "Supports function calling / tool use via API for integration with external services." },
+      { "id": "mcpIntegration", "description": "Supports Model Context Protocol (MCP) for standardized tool integration with external services." }
+    ],
+    "apiAccess": [
+      { "protocol": "Anthropic Messages API", "description": "RESTful API supporting streaming, tool use, vision, and batch processing." },
+      { "protocol": "MCP (Model Context Protocol)", "description": "Open protocol for connecting AI models to external data sources and tools." }
+    ]
+  },
+  "communication": {
+    "inputModalities": ["text", "image", "PDF", "file upload"],
+    "outputModalities": ["text", "markdown", "code", "tool calls"],
+    "a2aProtocol": "Not formally documented. MCP provides tool-level interoperability."
+  },
+  "evaluation": {
+    "benchmarks": [
+      { "name": "SWE-bench Verified", "score": "State-of-the-art per release", "notes": "Detailed scores published per model in Anthropic's system cards." },
+      { "name": "TAU-bench", "score": "Published per model", "notes": "Agentic task completion for customer service scenarios." },
+      { "name": "AIME 2025", "score": "Published per model", "notes": "High school math competition. Results vary by model tier." }
+    ],
+    "limitations": [
+      "May hallucinate facts, citations, or code that appears plausible but is incorrect.",
+      "Knowledge has a training data cutoff and may not reflect recent events without web search.",
+      "Cannot retain information across conversations unless memory feature is enabled.",
+      "Computer use capability is still evolving and not yet on par with human reliability.",
+      "Performance may degrade with very long contexts despite large context window support."
+    ]
+  },
+  "_auditMetadata": {
+    "auditor": "[Your Name]",
+    "auditDate": "2026-03-XX",
+    "methodology": "Manual audit using Anthropic's system cards, API documentation, blog posts, and published benchmark results.",
+    "fieldsNotDisclosed": ["architecture.baseModel (parameter counts)"],
+    "difficultyNotes": {
+      "identity": "Easy", "purpose": "Easy", "architecture": "Moderate", "capabilities": "Easy", "communication": "Easy for I/O", "evaluation": "Easy to Moderate"
+    }
+  }
+}

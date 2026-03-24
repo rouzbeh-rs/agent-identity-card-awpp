@@ -1,0 +1,73 @@
+{
+  "$schema": "https://agentprotocol.example/schema/awpp-v1.json",
+  "identity": {
+    "name": "ChatGPT",
+    "version": "GPT-5 Family (2025-2026)",
+    "legalOperator": "OpenAI, L.L.C.",
+    "license": "Proprietary / Commercial",
+    "did": "did:web:openai.com:chatgpt",
+    "lastUpdated": "2026-03-17"
+  },
+  "purpose": {
+    "task": "General-purpose conversational AI assistant for text generation, analysis, coding, image understanding, image generation, web browsing, data analysis, and agentic task completion.",
+    "intendedUse": "Personal productivity, research, education, creative writing, software development, and enterprise workflows. Available via consumer chat interface (chatgpt.com) and developer API.",
+    "outOfScopeUse": "Providing definitive medical, financial, or legal advice. Autonomous weapons systems. Generation of content violating OpenAI's Usage Policies, including CSAM, targeted harassment, or deceptive impersonation."
+  },
+  "architecture": {
+    "baseModel": "Proprietary large language model family developed by OpenAI. Current models include GPT-5.3 Instant (default conversational), GPT-5.4 Thinking (advanced reasoning), GPT-5.4 Pro (maximum capability), and GPT-5.3-Codex (agentic coding). Auto mode dynamically routes between models. Parameter counts not disclosed.",
+    "planningModule": "GPT-5.4 Thinking provides adaptive reasoning with configurable thinking time (Light, Standard, Extended). Shows upfront thinking plans for complex tasks. GPT-5.3-Codex provides agentic coding with autonomous multi-step execution.",
+    "memorySystem": "Short-term: Conversational context window up to 400K tokens (GPT-5.3 Instant). Long-term: Optional Memory feature persists user preferences and facts across conversations when enabled by the user.",
+    "knowledgeSystem": {
+      "type": "Parametric knowledge from training data, augmented by real-time web browsing, code execution, and tool use.",
+      "source": "Training data from publicly available internet text, licensed datasets, and other sources. Knowledge cutoff varies by model version. Web browsing tool provides real-time information access."
+    }
+  },
+  "capabilities": {
+    "tools": [
+      { "id": "webBrowsing", "description": "Can browse the web in real-time to retrieve current information and cite sources." },
+      { "id": "codeInterpreter", "description": "Can write and execute Python code in a sandboxed environment for data analysis and computation." },
+      { "id": "imageGeneration", "description": "Can generate images via integrated DALL-E model based on text descriptions." },
+      { "id": "fileAnalysis", "description": "Can read and analyze up to 20 uploaded files per message including PDFs, spreadsheets, images, and code." },
+      { "id": "imageUnderstanding", "description": "Can interpret and analyze images (multimodal vision capability)." },
+      { "id": "computerUse", "description": "GPT-5.4 introduces computer use capabilities for agentic interaction with software environments." }
+    ],
+    "apiAccess": [
+      { "protocol": "OpenAI Chat Completions API", "description": "RESTful API supporting streaming, function calling, vision, structured outputs, and batch processing." }
+    ]
+  },
+  "communication": {
+    "inputModalities": ["text", "image", "audio", "file upload"],
+    "outputModalities": ["text", "markdown", "code", "image", "audio"],
+    "a2aProtocol": "Not disclosed"
+  },
+  "evaluation": {
+    "benchmarks": [
+      { "name": "GDPval (Professional Knowledge Work)", "score": "State-of-the-art (GPT-5.2+)", "notes": "Measures well-specified knowledge work tasks across 44 occupations. GPT-5.2 Thinking beats or ties top industry professionals on 70.9% of comparisons." },
+      { "name": "HealthBench", "score": "State-of-the-art (GPT-5+)", "notes": "Realistic health scenario evaluation based on physician-defined criteria." },
+      { "name": "SWE-bench Verified (Coding)", "score": "Published per model", "notes": "Agentic coding benchmark. GPT-5.3-Codex and GPT-5.4 show strong performance." },
+      { "name": "MMLU (GPT-4o baseline)", "score": "88.7%", "notes": "Legacy benchmark for GPT-4o. Newer GPT-5 family benchmarks focus on professional tasks." }
+    ],
+    "limitations": [
+      "May hallucinate plausible-sounding but incorrect facts, citations, or code.",
+      "Knowledge cutoff means information may be outdated without web browsing enabled.",
+      "Web browsing results depend on availability and accuracy of indexed web content.",
+      "Auto mode routing between models is opaque; users may not know which model is responding.",
+      "Long-term Memory feature may retain information users did not intend to persist; users must manage memory manually.",
+      "Rapid model versioning (GPT-5.0 through 5.4 in 8 months) means documentation can lag behind current capabilities."
+    ]
+  },
+  "_auditMetadata": {
+    "auditor": "[Your Name]",
+    "auditDate": "2026-03-XX",
+    "methodology": "Manual audit using OpenAI's official documentation including model announcements, system cards, API documentation (platform.openai.com), release notes, help center articles, and published research.",
+    "fieldsNotDisclosed": ["architecture.baseModel (parameter counts, training data composition)", "communication.a2aProtocol"],
+    "difficultyNotes": {
+      "identity": "Easy",
+      "purpose": "Easy",
+      "architecture": "Difficult — rapid versioning makes documentation a moving target. Parameter counts not disclosed. Internal routing logic opaque.",
+      "capabilities": "Easy — tools visible in UI and documented in API docs.",
+      "communication": "Moderate — audio I/O details required checking multiple sources.",
+      "evaluation": "Moderate — benchmarks scattered across multiple announcements and model versions. Newer GPT-5 family uses different benchmarks than GPT-4o era."
+    }
+  }
+}
